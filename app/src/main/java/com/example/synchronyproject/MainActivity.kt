@@ -10,8 +10,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.synchronyproject.Helpers.Navigation.NavigationController
+import com.example.synchronyproject.Pages.ProfileScreen.ProfileScreen
 import com.example.synchronyproject.ui.theme.SynchronyProjectTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +27,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    NavigationController(navController = navController)
                 }
             }
         }
@@ -38,6 +44,7 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     SynchronyProjectTheme {
-        Greeting("Android")
+        val nav = rememberNavController()
+        ProfileScreen(nav)
     }
 }
